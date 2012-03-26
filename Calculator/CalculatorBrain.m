@@ -7,9 +7,11 @@
 //
 
 #import "CalculatorBrain.h"
+#import <math.h>
 
 @interface CalculatorBrain()
 @property (nonatomic, strong) NSMutableArray *operandStack;
+-(void) pushDoubleOperand:(double)operand;
 @end
 
 @implementation CalculatorBrain
@@ -20,8 +22,13 @@
     return _operandStack;
 }
 
--(void) pushOperand:(double) operand{
-    [self.operandStack addObject: [NSNumber numberWithDouble:operand]];
+-(void) pushOperand:(NSString *) operand{
+    double operandValue = [operand isEqualToString:@"π"] ? M_PI : [operand doubleValue];
+    [self.operandStack addObject: [NSNumber numberWithDouble:operandValue]];
+}
+
+-(void) pushDoubleOperand:(double)operand{
+    [self.operandStack addObject:[NSNumber numberWithDouble:operand]];
 }
 
 -(double) popOperand{
@@ -33,23 +40,25 @@
 -(double)performOperation:(NSString *) operation{
     double result = 0;
     
-    double last = [self popOperand];
-    double first = [self popOperand];
-    
     if ([operation isEqualToString:@"+"]) {
-        result = first + last;
-        NSLog(@"%f + %f = %f",first,last,result);
+        result = [self popOperand] + [self popOperand];
     }else if ([operation isEqualToString:@"-"]) {
-        result = first - last;
-        NSLog(@"%f - %f = %f",first,last,result);
+        result = [self popOperand];
+        result = [self popOperand] - result;
     }else if ([operation isEqualToString:@"/"]) {
-        result = first / last;
-        NSLog(@"%f / %f = %f",first,last,result);
+        result = [self popOperand];
+        result = [self popOperand] / result;
     }else if ([operation isEqualToString:@"*"]) {
-        result = first * last;
-        NSLog(@"%f * %f = %f",first,last,result);
+        result = [self popOperand] * [self popOperand];
+    }else if([operation isEqualToString:@"sin"]){
+        result = sin([self popOperand]);
+    }else if([operation isEqualToString:@"cos"]){
+        result = cos([self popOperand]);
+    }else if([operation isEqualToString:@"sqrt"]){
+        result = sqrt([self popOperand]);
     }
-    [self pushOperand:result];
+
+    [self pushDoubleOperand:result];
     return result;
 }
 @end
