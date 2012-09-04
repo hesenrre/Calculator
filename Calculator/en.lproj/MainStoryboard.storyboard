@@ -318,13 +318,21 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="enterPressed" destination="2" eventType="touchUpInside" id="j8N-4C-B7r"/>
+                                    <action selector="enterPressed:" destination="2" eventType="touchUpInside" id="wdb-hr-bb3"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="rQi-jE-YHg">
+                                <rect key="frame" x="20" y="0.0" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="brainHistory" destination="rQi-jE-YHg" id="hey-Z2-C0O"/>
                         <outlet property="display" destination="QVj-Fd-gzb" id="8uB-il-31r"/>
                     </connections>
                 </viewController>
@@ -338,7 +346,9 @@
             <relationships>
                 <relationship kind="action" name="digitPressed:" candidateClass="UIButton"/>
                 <relationship kind="action" name="dotPressed:" candidateClass="UIButton"/>
+                <relationship kind="action" name="enterPressed:"/>
                 <relationship kind="action" name="operationPressed:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="brainHistory" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="display" candidateClass="UILabel"/>
             </relationships>
         </class>
