@@ -62,4 +62,11 @@
         self.userIsInTheMiddleOfEnteringANumber = YES;
     }
 }
+
+- (IBAction)clearPressed {
+    self.display.text = @"0";
+    self.brainHistory.text = [self.brainHistory.text stringByAppendingString:@"C "];
+    [self.brain clearStack];
+}
+
 @end
